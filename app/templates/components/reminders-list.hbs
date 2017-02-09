@@ -2,7 +2,7 @@
 
 <ul>
   {{#each model as |reminder|}}
-    <li class='spec-reminder-item'>
+    <li {{action ''}} class='spec-reminder-item'>
       <h2>{{reminder.title}}</h2>
       <p>{{reminder.date}}</p>
       <p>{{reminder.notes}}</p>

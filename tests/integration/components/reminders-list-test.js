@@ -25,21 +25,3 @@ test('it renders an li', function(assert) {
   this.render(hbs`{{ reminders-list model=reminder }}`);
   assert.equal(this.$('li').length, 1);
 });
-
-
-
-// // Template block usage:
-// this.render(hbs`
-//   {{#reminders-list}}
-//     template block text
-//   {{/reminders-list}}
-// `);
-// assert.equal(this.$().text().trim(), 'template block text');
-
-// test('default route renders a title', () => {
-//   this.render(hbs`{{reminders-list}}`);
-//   assert
-//   andThen(() => {
-//     equal(find('h1')).length, 1, 'The first page renders an h1'
-//   })
-// })
