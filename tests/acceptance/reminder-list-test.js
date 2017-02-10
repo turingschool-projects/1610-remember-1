@@ -13,7 +13,7 @@ test('viewing the homepage', function(assert) {
   visit('/');
 
   andThen(function() {
-    assert.equal(currentURL(), '/', 'curren turl is root');
+    assert.equal(currentURL(), '/', 'current url is root');
     assert.equal(Ember.$('.spec-reminder-item').length, 5, 'root page user sees 5 reminders');
   });
 });
