@@ -6,10 +6,11 @@ const Router = Ember.Router.extend({
   rootURL: config.rootURL
 });
 
+
 Router.map(function() {
   this.route('reminders', function() {
     this.route('reminder-card', {path: '/:reminder_id'});
   });
-});
+
 
 export default Router;
