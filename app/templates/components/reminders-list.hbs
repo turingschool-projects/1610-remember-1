@@ -4,9 +4,7 @@
   {{#each model as |reminder|}}
     <li class='spec-reminder-item'>
       {{#link-to "reminders.reminder-card" reminder}}
-        <h2>{{reminder.title}}</h2>
-        <p>{{reminder.date}}</p>
-        <p>{{reminder.notes}}</p>
+        <h3>{{reminder.title}}</h3>
       {{/link-to}}
     </li>
   {{/each}}
