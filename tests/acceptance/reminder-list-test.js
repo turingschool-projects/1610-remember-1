@@ -26,6 +26,6 @@ test('clicking on an individual item', function(assert) {
 
   andThen(function() {
     assert.equal(currentURL(), '/reminders/1', 'click on individual item routes');
-    assert.equal(Ember.$('.spec-reminder--title:first').text().trim(), Ember.$('.spec-reminder-card--title:first').text().trim());
+    assert.equal(Ember.$('.spec-reminder--title:first').text().trim(), Ember.$('.spec-reminder-card--title:first').text().trim(), 'title matches clicked card title');
   });
 });
