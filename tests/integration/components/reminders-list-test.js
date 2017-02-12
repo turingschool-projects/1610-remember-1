@@ -11,7 +11,6 @@ moduleForComponent('reminders-list', 'Integration | Component | reminders list',
 
 test('it renders an h1', function(assert) {
   this.render(hbs`{{reminders-list title="reminders"}}`);
-
   assert.equal(this.$('h1').length, 1);
   assert.equal(this.$('h1').text(), 'reminders');
 });
