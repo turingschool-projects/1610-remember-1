@@ -1,5 +1,11 @@
 <h1>{{title}}</h1>
 
+{{#link-to "reminders.new-reminder"}}
+  <button>
+    new
+  </button>
+{{/link-to}}
+
 <ul>
   {{#each model as |reminder|}}
     <li class='spec-reminder-item'>
