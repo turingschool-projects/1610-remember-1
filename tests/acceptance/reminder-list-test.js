@@ -45,3 +45,22 @@ test('adding a new item', function(assert) {
     assert.equal(Ember.$('.spec-input-title').text().trim(), Ember.$('.spec-reminder-card--title:last').text().trim(), 'adds item to reminder list on submit')
   });
 });
+
+test('render warning message when nothing is added', function(assert) {
+
+  visit('/');
+
+  andThen(function() {
+    assert.equal(Ember.$('.spec-reminder-warning').length, 1, '"Create a new reminder!" message when no reminders have been added')
+  });
+
+  click('.spec-reminder--new');
+  fillIn('.spec-input-title', 'Bananas')
+  fillIn('.spec-input-date', '12/23/16')
+  fillIn('.spec-textarea-notes', 'This shit is bananas, B.A.N.A.N.A.S.')
+  click('.spec-reminder-add--submit');
+
+  andThen(function() {
+    assert.equal(Ember.$('.spec-reminder-warning').length, 0, '"Create a new reminder!" no longer exists when reminder is added')
+  });
+});
