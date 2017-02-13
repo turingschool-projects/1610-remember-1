@@ -7,6 +7,7 @@
 {{/link-to}}
 
 <ul>
+  {{#if model}}
   {{#each model as |reminder|}}
     <li class='spec-reminder-item'>
       {{#link-to "reminders.reminder-card" reminder}}
@@ -14,6 +15,9 @@
       {{/link-to}}
     </li>
   {{/each}}
+  {{else}}
+    <p>Create a new note, ya dingus!</p>
+  {{/if}}
 </ul>
 
 {{outlet}}
