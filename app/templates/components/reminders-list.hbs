@@ -8,13 +8,13 @@
 
 <ul>
   {{#if model}}
-  {{#each model as |reminder|}}
-    <li class='spec-reminder-item'>
-      {{#link-to "reminders.reminder-card" reminder}}
-        <h3 class='spec-reminder--title'>{{reminder.title}}</h3>
-      {{/link-to}}
-    </li>
-  {{/each}}
+    {{#each model as |reminder|}}
+      <li class='spec-reminder-item'>
+        {{#link-to "reminders.reminder-card" reminder}}
+          <h3 class='spec-reminder--title'>{{reminder.title}}</h3>
+        {{/link-to}}
+      </li>
+    {{/each}}
   {{else}}
     <p class='spec-reminder-warning'>Create a new reminder!</p>
   {{/if}}
