@@ -35,13 +35,34 @@ test('adding a new item', function(assert) {
 
   visit('/');
   click('.spec-reminder--new');
-  fillIn('.spec-input-title', 'Bananas')
-  fillIn('.spec-input-date', '12/23/16')
-  fillIn('.spec-textarea-notes', 'This shit is bananas, B.A.N.A.N.A.S.')
+  fillIn('.spec-input-title', 'Bananas');
+  fillIn('.spec-input-date', '12/23/16');
+  fillIn('.spec-textarea-notes', 'This shit is bananas, B.A.N.A.N.A.S.');
+  click('.spec-reminder-add--submit');
+  click('.spec-reminder--title:last');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders/6', 'current url is /reminders/6');
+    assert.equal(Ember.$('.spec-reminder-card--title:last').text().trim(), 'Bananas', 'adds title to reminder list on submit');
+    assert.equal(Ember.$('.spec-reminder-card--date:last').text().trim(), '12/23/16', 'adds date to reminder list on submit');
+  });
+});
+
+test('render warning message when nothing is added', function(assert) {
+
+  visit('/');
+
+  andThen(function() {
+    assert.equal(Ember.$('.spec-reminder-warning').length, 1, '"Create a new reminder!" message when no reminders have been added');
+  });
+
+  click('.spec-reminder--new');
+  fillIn('.spec-input-title', 'Bananas');
+  fillIn('.spec-input-date', '12/23/16');
+  fillIn('.spec-textarea-notes', 'This shit is bananas, B.A.N.A.N.A.S.');
   click('.spec-reminder-add--submit');
 
   andThen(function() {
-    assert.equal(currentURL(), '/reminders/new-reminder', 'current url is /reminders/new-reminder');
-    assert.equal(Ember.$('.spec-input-title').text().trim(), Ember.$('.spec-reminder-card--title:last').text().trim(), 'adds item to reminder list on submit')
+    assert.equal(Ember.$('.spec-reminder-warning').length, 0, '"Create a new reminder!" no longer exists when reminder is added');
   });
 });
