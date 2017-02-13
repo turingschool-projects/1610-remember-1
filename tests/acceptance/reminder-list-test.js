@@ -29,3 +29,19 @@ test('clicking on an individual item', function(assert) {
     assert.equal(Ember.$('.spec-reminder--title:first').text().trim(), Ember.$('.spec-reminder-card--title:first').text().trim(), 'title matches clicked card title');
   });
 });
+
+test('adding a new item', function(assert) {
+  server.createList('reminder', 5);
+
+  visit('/');
+  click('.spec-reminder--new');
+  fillIn('.spec-input-title', 'Bananas')
+  fillIn('.spec-input-date', '12/23/16')
+  fillIn('.spec-textarea-notes', 'This shit is bananas, B.A.N.A.N.A.S.')
+  click('.spec-reminder-add--submit');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders/new-reminder', 'current url is /reminders/new-reminder');
+    assert.equal(Ember.$('.spec-input-title').text().trim(), Ember.$('.spec-reminder-card--title:last').text().trim(), 'adds item to reminder list on submit')
+  });
+});
