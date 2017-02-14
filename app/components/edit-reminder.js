@@ -9,10 +9,6 @@ export default Ember.Component.extend({
 
   actions: {
     editReminder(model) {
-      console.log('1')
-      // let i = this.get('store').findRecord('reminder', model.id).then(function(stuff) {
-      //   stuff.set({title: '', date: '', notes: ''});
-      // });
       model.save();
     }
   }
