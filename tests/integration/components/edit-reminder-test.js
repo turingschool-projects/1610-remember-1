@@ -5,21 +5,17 @@ moduleForComponent('edit-reminder', 'Integration | Component | edit reminder', {
   integration: true
 });
 
-test('it renders', function(assert) {
-
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
+test('it renders an input', function(assert) {
   this.render(hbs`{{edit-reminder}}`);
+  assert.equal(this.$('input').length, 2);
+});
 
-  assert.equal(this.$().text().trim(), '');
+test('it renders a text area', function(assert) {
+  this.render(hbs`{{edit-reminder}}`);
+  assert.equal(this.$('textArea').length, 1);
+});
 
-  // Template block usage:
-  this.render(hbs`
-    {{#edit-reminder}}
-      template block text
-    {{/edit-reminder}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+test('it renders a button', function(assert) {
+  this.render(hbs`{{edit-reminder}}`);
+  assert.equal(this.$('button').length, 1);
 });
