@@ -17,5 +17,5 @@ test('it renders a text area', function(assert) {
 
 test('it renders a button', function(assert) {
   this.render(hbs`{{edit-reminder}}`);
-  assert.equal(this.$('button').length, 2);
+  assert.equal(this.$('button').length, 1);
 });
