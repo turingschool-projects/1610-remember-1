@@ -66,3 +66,28 @@ test('render warning message when nothing is added', function(assert) {
     assert.equal(Ember.$('.spec-reminder-warning').length, 0, '"Create a new reminder!" no longer exists when reminder is added');
   });
 });
+
+test('edit and save fields', function(assert) {
+
+  visit('/');
+  click('.spec-reminder--new');
+  fillIn('.spec-input-title', 'Bananas');
+  fillIn('.spec-input-date', '12/23/16');
+  fillIn('.spec-textarea-notes', 'This shit is bananas, B.A.N.A.N.A.S.');
+  click('.spec-reminder-add--submit');
+  click('.spec-reminder--title');
+  click('.spec-reminder-card--editbtn');
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders/1/edit', 'click edit on reminder card takes you to nested edit route');
+  });
+  fillIn('.spec-edit-input-title', 'a');
+  fillIn('.spec-edit-input-date', 'a');
+  fillIn('.spec-edit-textarea-notes', 'a');
+  click('.spec-reminder-edit--save');
+
+  andThen(function() {
+    assert.equal(Ember.$('.spec-reminder--title').text().trim(), 'a', 'edit title and updates reminder list on save');
+    assert.equal(Ember.$('.spec-reminder-card--date').text().trim(), 'a', 'edit date and updated reminder list on save');
+  });
+
+});
