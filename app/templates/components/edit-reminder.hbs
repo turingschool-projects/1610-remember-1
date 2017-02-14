@@ -11,5 +11,7 @@
     Notes
     {{textarea class="spec-edit-textarea-notes" value=model.notes}}
   </label>
-  <button class='spec-reminder-edit--save'>Save</button>
+  {{#link-to "reminders.reminder-card"}}
+    <button class='spec-reminder-edit--save'>Save</button>
+  {{/link-to}}
 </form>
