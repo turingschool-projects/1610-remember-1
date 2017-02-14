@@ -79,3 +79,29 @@ test('edit and save fields', function(assert) {
     assert.equal(Ember.$('.spec-reminder-card--date').text().trim(), 'a', 'edit date and updated reminder list on save');
   });
 });
+
+test('edit and revert to original info', function(assert) {
+
+  visit('/');
+  click('.spec-reminder--new');
+  fillIn('.spec-input-title', 'Bananas');
+  fillIn('.spec-input-date', '12/23/16');
+  fillIn('.spec-textarea-notes', 'This shit is bananas, B.A.N.A.N.A.S.');
+  click('.spec-reminder-add--submit');
+  click('.spec-reminder--title');
+  click('.spec-reminder-card--editbtn');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders/1/edit', 'click edit on reminder card takes you to nested edit route');
+  });
+
+  fillIn('.spec-edit-input-title', 'a');
+  fillIn('.spec-edit-input-date', 'a');
+  fillIn('.spec-edit-textarea-notes', 'a');
+  click('.spec-reminder-edit--revert');
+
+  andThen(function() {
+    assert.equal(Ember.$('.spec-reminder--title').text().trim(), 'Bananas', 'edit title and reverts to original on button click');
+    assert.equal(Ember.$('.spec-reminder-card--date').text().trim(), '12/23/16', 'edit date and reverts to original on revert button click');
+  });
+});
