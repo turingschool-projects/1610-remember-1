@@ -85,7 +85,9 @@ test('edit and save fields', function(assert) {
   fillIn('.spec-edit-textarea-notes', 'a');
   click('.spec-reminder-edit--save');
 
+
   andThen(function() {
+    assert.equal(currentURL(), '/reminders/1', 'click save takes you to original card route');
     assert.equal(Ember.$('.spec-reminder--title').text().trim(), 'a', 'edit title and updates reminder list on save');
     assert.equal(Ember.$('.spec-reminder-card--date').text().trim(), 'a', 'edit date and updated reminder list on save');
   });
