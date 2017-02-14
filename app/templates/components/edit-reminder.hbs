@@ -18,9 +18,11 @@
       Save
     </button>
   {{/link-to}}
-  <button
-    class='spec-reminder-edit--revert'
-    {{action 'revertReminder' model on="click"}}>
-    Revert
-  </button>
+  {{#if model.hasDirtyAttributes}}
+    <button
+      class='spec-reminder-edit--revert'
+      {{action 'revertReminder' model on="click"}}>
+      Revert
+    </button>
+  {{/if}}
 </form>
