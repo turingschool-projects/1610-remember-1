@@ -8,30 +8,16 @@ import Ember from 'ember';
 moduleForAcceptance('Acceptance | reminders list');
 
 test('viewing the homepage', function(assert) {
-  server.createList('reminder', 5);
 
   visit('/');
 
   andThen(function() {
     assert.equal(currentURL(), '/reminders', 'current url is /reminders');
-    assert.equal(Ember.$('.spec-reminder-item').length, 5, 'root page user sees 5 reminders');
-  });
-});
-
-test('clicking on an individual item', function(assert) {
-  server.createList('reminder', 5);
-
-  visit('/');
-  click('.spec-reminder--title:first');
-
-  andThen(function() {
-    assert.equal(currentURL(), '/reminders/1', 'click on individual item routes');
-    assert.equal(Ember.$('.spec-reminder--title:first').text().trim(), Ember.$('.spec-reminder-card--title:first').text().trim(), 'title matches clicked card title');
+    assert.equal(Ember.$('.spec-reminder-item').length, 0, 'root page user sees no reminders');
   });
 });
 
 test('adding a new item', function(assert) {
-  server.createList('reminder', 5);
 
   visit('/');
   click('.spec-reminder--new');
@@ -42,7 +28,7 @@ test('adding a new item', function(assert) {
   click('.spec-reminder--title:last');
 
   andThen(function() {
-    assert.equal(currentURL(), '/reminders/6', 'current url is /reminders/6');
+    assert.equal(currentURL(), '/reminders/1', 'current url is /reminders/1');
     assert.equal(Ember.$('.spec-reminder-card--title:last').text().trim(), 'Bananas', 'adds title to reminder list on submit');
     assert.equal(Ember.$('.spec-reminder-card--date:last').text().trim(), '12/23/16', 'adds date to reminder list on submit');
   });
