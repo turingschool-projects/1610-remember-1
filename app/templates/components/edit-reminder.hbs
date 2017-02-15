@@ -1,4 +1,4 @@
-<form {{action 'editReminder' model on="submit"}}>
+<form >
   <label>
     Title
     {{input class="spec-edit-input-title" value=model.title}}
@@ -12,6 +12,17 @@
     {{textarea class="spec-edit-textarea-notes" value=model.notes}}
   </label>
   {{#link-to "reminders.reminder-card"}}
-    <button class='spec-reminder-edit--save'>Save</button>
+    <button
+      class='spec-reminder-edit--save'
+      {{action 'editReminder' model on="click"}}>
+      Save
+    </button>
   {{/link-to}}
+  {{#if model.hasDirtyAttributes}}
+    <button
+      class='spec-reminder-edit--revert'
+      {{action 'revertReminder' model on="click"}}>
+      Revert
+    </button>
+  {{/if}}
 </form>

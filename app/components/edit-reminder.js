@@ -10,6 +10,9 @@ export default Ember.Component.extend({
   actions: {
     editReminder(model) {
       model.save();
+    },
+    revertReminder(model) {
+      model.rollbackAttributes();
     }
   }
 });
