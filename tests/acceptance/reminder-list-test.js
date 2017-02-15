@@ -115,3 +115,44 @@ test('edit and revert to original info', function(assert) {
     assert.equal(Ember.$('.spec-reminder-card--date').text().trim(), '12/23/16', 'edit date and reverts to original on revert button click');
   });
 });
+
+test('deleting reminders with list delete button', function(assert) {
+
+  visit('/');
+  click('.spec-reminder--new');
+  fillIn('.spec-input-title', 'Bananas');
+  fillIn('.spec-input-date', '12/23/16');
+  fillIn('.spec-textarea-notes', 'This shit is bananas, B.A.N.A.N.A.S.');
+  click('.spec-reminder-add--submit');
+
+  andThen(function() {
+    assert.equal(Ember.$('.spec-reminder--title').length, 1, 'adds title to reminder list on submit');
+  })
+
+  click('.spec-reminder--deletebtn');
+
+  andThen(function() {
+    assert.equal(Ember.$('.spec-reminder--title').length, 0, 'removes reminder on delete');
+  })
+});
+
+test('deleting reminders with individual card delete button', function(assert) {
+
+  visit('/');
+  click('.spec-reminder--new');
+  fillIn('.spec-input-title', 'Bananas');
+  fillIn('.spec-input-date', '12/23/16');
+  fillIn('.spec-textarea-notes', 'This shit is bananas, B.A.N.A.N.A.S.');
+  click('.spec-reminder-add--submit');
+
+  andThen(function() {
+    assert.equal(Ember.$('.spec-reminder--title').length, 1, 'adds title to reminder list on submit');
+  })
+
+  click('.spec-reminder--title');
+  click('.spec-reminder--deletebtn');
+
+  andThen(function() {
+    assert.equal(Ember.$('.spec-reminder--title').length, 0, 'removes reminder on delete');
+  })
+});
