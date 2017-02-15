@@ -18,7 +18,11 @@
         {{/if}}
       {{/link-to}}
       {{#link-to "reminders"}}
-          <button class='spec-reminder--deletebtn'>delete</button>
+        <button
+          class='spec-reminder--deletebtn'
+          {{action 'removeReminder' reminder on="click"}}>
+          delete
+        </button>
       {{/link-to}}
       </li>
     {{/each}}
