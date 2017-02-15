@@ -89,6 +89,11 @@ test('edit and revert to original info', function(assert) {
   fillIn('.spec-textarea-notes', 'This shit is bananas, B.A.N.A.N.A.S.');
   click('.spec-reminder-add--submit');
   click('.spec-reminder--title');
+
+  andThen(function() {
+    assert.equal(Ember.$('.please-save-me').length, 0, 'There is no unsaved classname before we edit')
+  })
+
   click('.spec-reminder-card--editbtn');
 
   andThen(function() {
@@ -98,6 +103,11 @@ test('edit and revert to original info', function(assert) {
   fillIn('.spec-edit-input-title', 'a');
   fillIn('.spec-edit-input-date', 'a');
   fillIn('.spec-edit-textarea-notes', 'a');
+
+  andThen(function() {
+    assert.equal(Ember.$('.please-save-me').length, 1, 'There is an unsaved classname while editing')
+  })
+
   click('.spec-reminder-edit--revert');
 
   andThen(function() {

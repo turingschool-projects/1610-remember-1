@@ -3,6 +3,10 @@ li a {
   color: black;
 }
 
-li a.active h3{
+li a.active h3 {
   background-color: pink;
+}
+
+.please-save-me {
+  color: gray;
 }
