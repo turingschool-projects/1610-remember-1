@@ -17,6 +17,9 @@
           <h3 class='spec-reminder--title'>{{reminder.title}}</h3>
         {{/if}}
       {{/link-to}}
+      {{#link-to "reminders"}}
+          <button class='spec-reminder--deletebtn'>delete</button>
+      {{/link-to}}
       </li>
     {{/each}}
   {{else}}
